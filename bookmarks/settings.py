@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +126,26 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth2',
+]
+
+SOCIAL_AUTH_FACEBOOK_KEY = '390569146100526'  # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'fb65f2459d94bc3ce68f77a5b2332ef1'  # Facebook App Secret
+
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
+
+# Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '451892394105-q06tkd7g2dt30m4skss787pb29t7m1am.apps.googleusercontent.com'
+# Google Consumer Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
