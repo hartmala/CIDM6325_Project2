@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+from django.urls import reverse_lazy
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -40,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'django_extensions',
+    'images.apps.ImagesConfig',
+    'easy_thumbnails',
+    'actions.apps.ActionsConfig',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +153,8 @@ ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '451892394105-q06tkd7g2dt30m4skss787pb29t7m1am.apps.googleusercontent.com'
 # Google Consumer Secret
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_detail',
+                                        args=[u.username])
+}
